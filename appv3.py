@@ -31,14 +31,14 @@ google_search_tool = Tool(
     func=google_search.run)
 
 # Document Search Tool
-document = PyPDFLoader("hkpc_whistle_blowing_policy.pdf").load_and_split()
+document = PyPDFLoader("hkpc_medical_handbook.pdf").load_and_split()
 splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200, length_function=len, separator="\n")
 features = splitter.split_documents(document)
 database = FAISS.from_documents(features, embeddings)
 document_search = RetrievalQA.from_chain_type(llm=llm, retriever=database.as_retriever())
 document_search_tool = Tool(
     name="Document Search",
-    description="useful for when you need to answer questions about HKPC.",
+    description="useful for when you need to get more details about HKPC medical benefit scheme. Input should be a fully formed question.",
     func=document_search.run)
 
 # Create Agent
