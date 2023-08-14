@@ -57,7 +57,7 @@ client = discord.Client(intents=intents)
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
-    channel = client.get_channel(1139173944386125846)
+    channel = client.get_channel(1140504366785237083)
     await channel.send("Hello! My name is Botbot, your personal AI assistant. Ask me anything.")
 
 @client.event
